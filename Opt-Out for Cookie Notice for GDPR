@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * JULIAN STARK SNIPPET FOR WORDPRESS / WOOCOMMERCE
+ * @TITLE: Opt-Out for Cookie Notice for GDPR
+ * @DESCRIPTION: Only works with plugin "Cookie Notice for GDPR". Adds possibility for Opt-Out code.
+ * @DOCUMENTATION AND DISCUSSION: https://julianstark.de/opt-out-statt-opt-in-beim-plugin-cookie-notice-for-gdpr/
+ * @AUTHOR: Julian Stark
+ * @VERSION: 1.1
+ */		
+
+function jstark_opt_out_script_in_head() {
+	
+	$cookies_refused = $_COOKIE[ 'cookie_notice_accepted' ];
+	$cookies_refused = $cookies_refused === 'false';
+	
+	if( !$cookies_refused) {
+		?>
+		
+		<!-- Paste your Opt-Out Code here - e.g. Facebook Pixel -->
+		
+		<?php
+	}
+}
+
+add_action('wp_head', 'jstark_opt_out_script_in_head');
